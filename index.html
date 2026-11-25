@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fcf9f4">
+  <title>המטבח של תמר</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #29241f;
+      --muted: #766b62;
+      --primary: #65472f;
+      --primary-dark: #4f3523;
+      --cream: #fcf9f4;
+      --card: #fff;
+      --soft: #f5f0e9;
+      --soft-2: #eee7de;
+      --line: #e8dfd6;
+      --sage: #315d42;
+      --sage-soft: #e1eee3;
+      --rose: #965545;
+      --rose-soft: #f7e8e2;
+      --shadow: 0 8px 26px rgba(67, 48, 32, .06);
+      font-family: Heebo, Arial, sans-serif;
+      font-size: 16px;
+      background: var(--cream);
+      color: var(--ink);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: var(--cream); }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+    .topbar {
+      position: sticky; top: 0; z-index: 5; min-height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px max(18px, calc((100vw - 1060px) / 2));
+      background: rgba(252,249,244,.94); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(232,223,214,.75);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 15px; display: grid; place-items: center;
+      color: var(--primary); background: #f1e4d7; font-size: 22px;
+    }
+    .brand-name { font: 700 20px Assistant, sans-serif; color: var(--primary-dark); }
+    .brand-sub { font-size: 12px; color: var(--muted); margin-top: -3px; }
+    .top-actions { display: flex; gap: 9px; }
+    .wrap { width: min(100% - 32px, 1000px); margin: 0 auto; padding: 26px 0 110px; }
+    .page-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 22px; }
+    h1,h2,h3,p { margin-top: 0; }
+    h1 { margin-bottom: 4px; font: 700 29px/1.2 Assistant, sans-serif; color: var(--primary-dark); }
+    h2 { margin-bottom: 0; font: 700 21px/1.35 Assistant, sans-serif; color: var(--primary-dark); }
+    h3 { margin-bottom: 0; font: 700 17px/1.35 Assistant, sans-serif; }
+    .subtitle { color: var(--muted); font-size: 14px; }
+    .btn {
+      min-height: 46px; border: 0; border-radius: 13px; padding: 10px 16px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-weight: 600; text-decoration: none; transition: transform .15s, background .15s;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 5px 12px rgba(101,71,47,.16); }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-soft { background: var(--soft); color: var(--primary-dark); }
+    .btn-soft:hover { background: var(--soft-2); }
+    .btn-green { background: var(--sage); color: #fff; }
+    .btn-danger { background: var(--rose-soft); color: #773c30; }
+    .btn-small { min-height: 44px; padding: 8px 12px; font-size: 14px; }
+    .icon-btn { width: 48px; height: 48px; border: 0; border-radius: 13px; background: var(--soft); color: var(--primary); font-size: 19px; }
+    .link-button { border: 0; padding: 2px 0; background: transparent; color: var(--primary); font: inherit; text-decoration: underline; }
+    .card { background: var(--card); border: 1px solid rgba(232,223,214,.72); border-radius: 18px; box-shadow: var(--shadow); }
+    .section { margin-top: 25px; }
+    .section-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 2px 12px; }
+    .section-head h2 { font-size: 20px; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .stat { padding: 15px; min-height: 114px; }
+    .stat-label { display: flex; justify-content: space-between; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; }
+    .stat-icon { font-size: 19px; }
+    .stat-value { display: block; margin-top: 6px; font: 700 27px Assistant, sans-serif; color: var(--primary-dark); }
+    .stat-note { font-size: 12px; color: var(--muted); }
+    .progress { height: 7px; background: var(--soft-2); border-radius: 20px; overflow: hidden; margin-top: 8px; }
+    .progress > span { display: block; height: 100%; background: var(--sage); border-radius: inherit; transition: width .2s; }
+    .list { display: grid; gap: 10px; }
+    .prep-row,.order-card,.payment-row,.delivery-row { padding: 15px; }
+    .prep-row { display: flex; align-items: center; gap: 13px; }
+    .check {
+      flex: 0 0 48px; width: 48px; height: 48px; border: 2px solid #d6c9bc; border-radius: 14px;
+      display: grid; place-items: center; color: #fff; background: #faf7f2; font-size: 21px;
+    }
+    .check.done { border-color: var(--sage); background: var(--sage); }
+    .prep-content { flex: 1; min-width: 0; }
+    .prep-name { font-weight: 700; font-size: 16px; }
+    .prep-meta { color: var(--muted); font-size: 13px; margin-top: 3px; }
+    .done-text { text-decoration: line-through; color: var(--muted); }
+    .tag { display: inline-flex; align-items: center; border-radius: 20px; padding: 5px 10px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+    .tag-paid { color: #28523a; background: var(--sage-soft); }
+    .tag-open { color: #7d4538; background: var(--rose-soft); }
+    .tag-partial { color: #755123; background: #f7efd9; }
+    .tag-pickup { color: #5f5146; background: var(--soft); }
+    .row-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .order-top,.order-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .customer { font-weight: 700; font-size: 17px; }
+    .order-id,.muted { color: var(--muted); font-size: 13px; }
+    .order-items { margin: 12px 0; padding: 11px 12px; background: var(--soft); border-radius: 12px; font-size: 14px; }
+    .order-items p { margin: 0; }
+    .order-items p + p { margin-top: 5px; }
+    .filters { display: flex; gap: 8px; overflow-x: auto; padding: 2px 1px 5px; }
+    .filter {
+      flex: 0 0 auto; min-height: 40px; border: 0; border-radius: 22px; padding: 8px 14px;
+      background: var(--soft); color: var(--muted); font-weight: 600;
+    }
+    .filter.active { background: var(--primary); color: #fff; }
+    .tools { display: flex; gap: 10px; margin-bottom: 12px; }
+    .field { display: grid; gap: 6px; min-width: 0; }
+    .field label { color: var(--muted); font-size: 13px; font-weight: 600; }
+    .field input,.field select,.field textarea,.search {
+      width: 100%; min-height: 48px; border: 1px solid var(--line); border-radius: 12px;
+      background: #fff; color: var(--ink); padding: 11px 13px; outline: none;
+    }
+    .field textarea { min-height: 90px; resize: vertical; }
+    .field input:focus,.field select:focus,.field textarea:focus,.search:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(101,71,47,.1); }
+    .search { flex: 1; }
+    .empty { text-align: center; padding: 28px 16px; color: var(--muted); }
+    .empty-icon { font-size: 32px; margin-bottom: 8px; }
+    .date-group { margin-top: 20px; }
+    .date-title { display: flex; align-items: center; gap: 9px; margin: 0 2px 10px; color: var(--primary-dark); font: 700 18px Assistant, sans-serif; }
+    .date-title small { font: 500 13px Heebo, sans-serif; color: var(--muted); }
+    .form-card { padding: 18px; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+    .span-2 { grid-column: 1 / -1; }
+    .line-item { display: grid; grid-template-columns: minmax(120px,2fr) 85px 100px 100px 44px; gap: 8px; align-items: end; }
+    .line-item + .line-item { margin-top: 10px; }
+    .line-item input { min-width: 0; }
+    .total-box { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; padding: 13px; border-radius: 12px; background: var(--soft); font-weight: 700; }
+    .form-actions { display: flex; justify-content: flex-start; gap: 10px; margin-top: 18px; }
+    .detail-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 13px; }
+    .detail-card { padding: 17px; }
+    .detail-line { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+    .detail-line:last-child { border-bottom: 0; }
+    .notice { padding: 12px 14px; border-radius: 12px; background: var(--rose-soft); color: #744237; font-size: 14px; }
+    .nav {
+      position: fixed; z-index: 10; bottom: 0; right: 0; left: 0; padding: 7px 12px max(7px, env(safe-area-inset-bottom));
+      background: rgba(255,255,255,.94); border-top: 1px solid var(--line); backdrop-filter: blur(14px);
+      display: flex; justify-content: center;
+    }
+    .nav-inner { width: min(100%, 600px); display: grid; grid-template-columns: repeat(3, 1fr); }
+    .nav button { border: 0; background: transparent; color: var(--muted); min-height: 56px; border-radius: 13px; display: grid; place-content: center; gap: 1px; font-size: 12px; }
+    .nav button.active { color: var(--primary); font-weight: 700; background: #f6f0e9; }
+    .nav-icon { font-size: 20px; }
+    #toast {
+      position: fixed; z-index: 20; bottom: 82px; left: 50%; transform: translate(-50%, 12px);
+      background: #30271f; color: #fff; border-radius: 12px; padding: 12px 18px; box-shadow: var(--shadow);
+      opacity: 0; pointer-events: none; transition: .2s; max-width: calc(100vw - 30px); text-align: center;
+    }
+    #toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .hidden { display: none !important; }
+    @media (min-width: 760px) {
+      .wrap { padding-top: 34px; }
+      .nav { top: 0; bottom: auto; right: auto; left: auto; position: absolute; width: min(100%, 1060px); margin: 68px auto 0; border: 0; background: transparent; padding: 10px 0; }
+      .nav-inner { justify-content: flex-start; display: flex; gap: 8px; }
+      .nav button { min-height: 38px; padding: 0 16px; display: flex; gap: 7px; align-items: center; }
+      .wrap { padding-top: 64px; }
+      #toast { bottom: 24px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 24px, 1000px); padding-top: 20px; }
+      h1 { font-size: 26px; }
+      .stats { gap: 8px; }
+      .stat { padding: 11px; min-height: 110px; }
+      .stat-label { font-size: 11px; }
+      .stat-value { font-size: 23px; }
+      .line-item { grid-template-columns: minmax(0,1fr) 67px 82px 40px; }
+      .line-item .days-field { grid-column: 2 / 3; }
+      .line-item .price-field { grid-column: 3 / 4; }
+      .line-item .remove-field { grid-column: 4 / 5; grid-row: 1; }
+      .line-item .name-field { grid-column: 1 / 4; }
+      .line-item input { min-height: 44px; padding: 8px; }
+      .order-bottom { align-items: flex-start; flex-direction: column; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .page-heading { align-items: flex-start; }
+      .page-heading .btn { padding: 9px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">🥐</div>
+      <div><div class="brand-name">המטבח של תמר</div><div class="brand-sub">כל ההזמנות, ההכנות והתשלומים במקום אחד</div></div>
+    </div>
+    <button class="btn btn-primary" type="button" data-action="new-order">＋ <span>הזמנה חדשה</span></button>
+  </header>
+  <nav class="nav" aria-label="ניווט ראשי">
+    <div class="nav-inner">
+      <button type="button" data-page="home"><span class="nav-icon">☀️</span><span>היום שלי</span></button>
+      <button type="button" data-page="orders"><span class="nav-icon">🧾</span><span>הזמנות</span></button>
+      <button type="button" data-page="prep"><span class="nav-icon">🥣</span><span>לוח הכנות</span></button>
+    </div>
+  </nav>
+  <main class="wrap" id="app" aria-live="polite"></main>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <datalist id="customer-names"></datalist>
+  <script>
+    (function () {
+      "use strict";
+      const STORAGE_KEY = "hamitbach-shel-tamar-v1";
+      const app = document.getElementById("app");
+      const today = toISODate(new Date());
+      let page = "home";
+      let selectedOrderId = null;
+      let editingOrderId = null;
+      let paymentFilter = "all";
+      let query = "";
+      let archiveView = false;
+      let toastTimer;
+
+      function toISODate(date) {
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return date.getFullYear() + "-" + month + "-" + day;
+      }
+      function addDays(dateString, days) {
+        const date = new Date(dateString + "T12:00:00");
+        date.setDate(date.getDate() + Number(days || 0));
+        return toISODate(date);
+      }
+      function isValidISODate(value) {
+        return /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(new Date(value + "T12:00:00").getTime()) &&
+          toISODate(new Date(value + "T12:00:00")) === value;
+      }
+      function formatDate(dateString, options) {
+        if (!dateString) return "";
+        return new Intl.DateTimeFormat("he-IL", options || { day: "numeric", month: "long" }).format(new Date(dateString + "T12:00:00"));
+      }
+      function money(value) {
+        return new Intl.NumberFormat("he-IL", { style: "currency", currency: "ILS", maximumFractionDigits: 0 }).format(Number(value || 0));
+      }
+      function escapeHtml(value) {
+        return String(value == null ? "" : value).replace(/[&<>"']/g, function (char) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char];
+        });
+      }
+      function id() { return Math.random().toString(36).slice(2, 10); }
+      function seedData() {
+        const tomorrow = addDays(today, 1);
+        const dayAfter = addDays(today, 2);
+        return {
+          nextId: 1047,
+          orders: [
+            {
+              id: "1044", customer: "שירה אלון", phone: "054-8891234", deliveryDate: tomorrow,
+              method: "delivery", address: "הדרור 14, כפר סבא", paymentTotal: 320, paymentPaid: 0,
+              paymentMode: "pickup", notes: "לצרף כרטיס ברכה", delivered: false, cancelled: false,
+              items: [{ id: id(), name: "עוגת מוס שוקולד", qty: 1, prepDays: 1, prepDate: today, unitPrice: 280, preparedQty: 0 },
+                { id: id(), name: "קישוטים ועיטוף", qty: 1, prepDays: 1, prepDate: today, unitPrice: 40, preparedQty: 0 }]
+            },
+            {
+              id: "1045", customer: "דנה שטרן", phone: "052-8876543", deliveryDate: dayAfter,
+              method: "pickup", address: "", paymentTotal: 420, paymentPaid: 200,
+              paymentMode: "partial", notes: "מארזים ללא אגוזים", delivered: false, cancelled: false,
+              items: [{ id: id(), name: "מארז אלפחורס", qty: 12, prepDays: 2, prepDate: today, unitPrice: 25, preparedQty: 5 }]
+            },
+            {
+              id: "1046", customer: "רוני לוי", phone: "050-5551234", deliveryDate: today,
+              method: "pickup", address: "", paymentTotal: 180, paymentPaid: 180,
+              paymentMode: "paid", notes: "", delivered: true, cancelled: false,
+              items: [{ id: id(), name: "מארז מקרונים", qty: 2, prepDays: 1, prepDate: addDays(today, -1), unitPrice: 90, preparedQty: 2 }]
+            }
+          ],
+          manualTasks: []
+        };
+      }
+      function loadData() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return seedData();
+          const value = JSON.parse(raw);
+          if (!value || !Array.isArray(value.orders) || !Array.isArray(value.manualTasks) ||
+              value.orders.some(function (order) { return !order || !Array.isArray(order.items); })) {
+            throw new Error("מבנה הנתונים אינו תקין");
+          }
+          return value;
+        } catch (error) {
+          console.error("לא ניתן לקרוא את הנתונים השמורים:", error);
+          window.setTimeout(function () { notify("לא ניתן לקרוא נתונים שמורים. הנתונים המקומיים לא שונו."); }, 0);
+          return { nextId: 1047, orders: [], manualTasks: [] };
+        }
+      }
+      let data = loadData();
+      function saveData() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          return true;
+        } catch (error) {
+          console.error("שמירת הנתונים נכשלה:", error);
+          notify("השמירה נכשלה. בדקי שהאחסון בדפדפן זמין.");
+          return false;
+        }
+      }
+      function notify(message) {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2600);
+      }
+      function activeOrders() { return data.orders.filter(function (order) { return !order.cancelled; }); }
+      function totalOf(order) {
+        if (order.paymentTotal !== null && order.paymentTotal !== "" && Number.isFinite(Number(order.paymentTotal))) return Number(order.paymentTotal);
+        const calculated = order.items.reduce(function (sum, item) { return sum + Number(item.qty || 0) * Number(item.unitPrice || 0); }, 0);
+        return calculated || null;
+      }
+      function paidOf(order) { return Math.max(0, Number(order.paymentPaid || 0)); }
+      function balanceOf(order) {
+        const total = totalOf(order);
+        return total == null ? null : Math.max(0, total - paidOf(order));
+      }
+      function paymentStatus(order) {
+        if (order.paymentMode === "paid" || (totalOf(order) != null && balanceOf(order) === 0)) return "paid";
+        if (paidOf(order) > 0 || order.paymentMode === "partial") return "partial";
+        return "pickup";
+      }
+      function paymentLabel(order) {
+        const status = paymentStatus(order);
+        if (status === "paid") return "שולם";
+        if (status === "partial") return "שולם חלקית" + (balanceOf(order) == null ? "" : " · יתרה " + money(balanceOf(order)));
+        return "ישולם באיסוף";
+      }
+      function paymentTag(order) {
+        const status = paymentStatus(order);
+        const style = status === "paid" ? "tag-paid" : status === "partial" ? "tag-partial" : "tag-pickup";
+        return '<span class="tag ' + style + '">' + escapeHtml(paymentLabel(order)) + "</span>";
+      }
+      function getPrepEntries() {
+        const entries = [];
+        activeOrders().forEach(function (order) {
+          order.items.forEach(function (item) {
+            entries.push({
+              key: order.id + ":" + item.id, date: item.prepDate || addDays(order.deliveryDate, -Number(item.prepDays || 1)),
+              name: item.name, qty: Number(item.qty || 0), order: order, item: item, manual: false,
+              completed: Number(item.preparedQty || 0) >= Number(item.qty || 0)
+            });
+          });
+        });
+        data.manualTasks.forEach(function (task) {
+          entries.push({ key: "manual:" + task.id, date: task.date, name: task.name, qty: Number(task.qty || 1), task: task, manual: true, completed: !!task.done });
+        });
+        return entries;
+      }
+      function groupPreparations(entries) {
+        const groups = new Map();
+        entries.forEach(function (entry) {
+          const key = entry.date + "|" + entry.name.toLocaleLowerCase("he");
+          if (!groups.has(key)) groups.set(key, { key: key, date: entry.date, name: entry.name, qty: 0, entries: [] });
+          const group = groups.get(key);
+          group.qty += entry.qty;
+          group.entries.push(entry);
+        });
+        return Array.from(groups.values()).sort(function (a, b) { return a.date.localeCompare(b.date) || a.name.localeCompare(b.name, "he"); });
+      }
+      function updateNav() {
+        document.querySelectorAll(".nav button").forEach(function (button) {
+          button.classList.toggle("active", button.dataset.page === page);
+        });
+      }
+      function render() {
+        updateNav();
+        if (page === "form") renderForm();
+        else if (page === "detail") renderDetail();
+        else if (page === "orders") renderOrders();
+        else if (page === "prep") renderPrep();
+        else renderHome();
+      }
+      function prepCard(group) {
+        const done = group.entries.length > 0 && group.entries.every(function (entry) { return entry.completed; });
+        const overdue = group.date < today;
+        const linked = group.entries.filter(function (entry) { return !entry.manual; }).map(function (entry) {
+          return '<button class="link-button" type="button" data-action="details" data-id="' + escapeHtml(entry.order.id) + '">#' +
+            escapeHtml(entry.order.id) + " " + escapeHtml(entry.order.customer) + "</button>";
+        });
+        return '<article class="card prep-row">' +
+          '<button class="check ' + (done ? "done" : "") + '" type="button" data-action="toggle-prep" data-key="' + escapeHtml(group.key) + '" aria-label="' + (done ? "בטלי סימון הכנה" : "סמני הכנה כהושלמה") + '">' + (done ? "✓" : "") + "</button>" +
+          '<div class="prep-content"><div class="prep-name ' + (done ? "done-text" : "") + '">' + escapeHtml(group.name) + " · " + group.qty + " יח׳</div>" +
+          '<div class="prep-meta">' + (overdue ? '<span class="tag tag-open">באיחור</span> · ' : "") +
+            (linked.length ? "הזמנות: " + linked.join(" · ") : "הכנה ידנית") + "</div>" +
+            '<div class="prep-meta">' + (group.entries.filter(function (entry) { return entry.completed; }).length) + " מתוך " + group.entries.length + " הזמנות הושלמו" + (page === "prep" ? " · הכנה " + escapeHtml(formatDate(group.date)) : "") + "</div>" +
+          "</div>" +
+          (page === "prep" ? '<button class="btn btn-soft btn-small" type="button" data-action="change-prep-date" data-key="' + escapeHtml(group.key) + '">שינוי תאריך</button>' : "") +
+          "</article>";
+      }
+      function orderCard(order, compact) {
+        const status = paymentStatus(order);
+        const itemText = order.items.map(function (item) { return escapeHtml(item.name) + " × " + Number(item.qty); }).join(" · ");
+        const delivery = (order.method === "delivery" ? "משלוח" : "איסוף עצמי") + " · " + formatDate(order.deliveryDate);
+        return '<article class="card order-card">' +
+          '<div class="order-top"><div><div class="customer">' + escapeHtml(order.customer) + '</div><div class="order-id">הזמנה #' + escapeHtml(order.id) + (order.delivered ? (status === "paid" ? " · סגורה" : " · נמסרה, ממתינה לתשלום") : "") + "</div></div>" + paymentTag(order) + "</div>" +
+          '<div class="order-items"><p>' + itemText + '</p><p class="muted">📅 ' + escapeHtml(delivery) + "</p></div>" +
+          '<div class="order-bottom"><div><span class="muted">סה״כ </span><strong>' + (totalOf(order) == null ? "לא הוגדר" : money(totalOf(order))) + "</strong>" +
+            (status !== "paid" && balanceOf(order) != null ? '<span class="muted"> · לתשלום ' + money(balanceOf(order)) + "</span>" : "") + "</div>" +
+            '<div class="row-actions">' +
+            (status !== "paid" ? '<button class="btn btn-green btn-small" type="button" data-action="mark-paid" data-id="' + escapeHtml(order.id) + '">סמני כשולם</button>' : "") +
+            (compact && order.deliveryDate === today && !order.delivered ? '<button class="btn btn-primary btn-small" type="button" data-action="deliver-paid" data-id="' + escapeHtml(order.id) + '">נמסרה ושולמה</button>' : "") +
+            '<button class="btn btn-soft btn-small" type="button" data-action="details" data-id="' + escapeHtml(order.id) + '">' + (compact ? "פרטים" : "פתיחת הזמנה") + "</button>" +
+          "</div></div></article>";
+      }
+      function emptyState(icon, text) {
+        return '<div class="card empty"><div class="empty-icon">' + icon + '</div><div>' + escapeHtml(text) + "</div></div>";
+      }
+      function renderHome() {
+        const entries = getPrepEntries().filter(function (entry) { return entry.date <= today && (entry.date === today || !entry.completed); });
+        const groups = groupPreparations(entries);
+        const doneCount = groups.filter(function (group) {
+          return group.entries.every(function (entry) { return entry.completed; });
+        }).length;
+        const deliveries = activeOrders().filter(function (order) { return order.deliveryDate === today && !order.delivered; });
+        const openOrders = activeOrders().filter(function (order) { return paymentStatus(order) !== "paid"; });
+        const openBalance = openOrders.reduce(function (sum, order) { return sum + (balanceOf(order) || 0); }, 0);
+        const unknownBalances = openOrders.filter(function (order) { return balanceOf(order) == null; }).length;
+        app.innerHTML =
+          '<div class="page-heading"><div><h1>היום שלי</h1><div class="subtitle">' + escapeHtml(new Intl.DateTimeFormat("he-IL", { weekday: "long", day: "numeric", month: "long" }).format(new Date(today + "T12:00:00"))) + '</div></div><button class="btn btn-primary" type="button" data-action="new-order">＋ הזמנה חדשה</button></div>' +
+          '<section class="stats">' +
+            '<article class="card stat"><div class="stat-label"><span>הכנות להיום</span><span class="stat-icon">🥣</span></div><strong class="stat-value">' + groups.length + '</strong><span class="stat-note">' + doneCount + " הושלמו</span><div class=\"progress\"><span style=\"width:" + (groups.length ? Math.round(doneCount / groups.length * 100) : 0) + '%"></span></div></article>' +
+            '<article class="card stat"><div class="stat-label"><span>מסירות היום</span><span class="stat-icon">📦</span></div><strong class="stat-value">' + deliveries.length + '</strong><span class="stat-note">הזמנות שמחכות למסירה</span></article>' +
+            '<article class="card stat"><div class="stat-label"><span>תשלומים פתוחים</span><span class="stat-icon">₪</span></div><strong class="stat-value">' + money(openBalance) + '</strong><span class="stat-note">' + openOrders.length + " הזמנות פתוחות" + (unknownBalances ? " · " + unknownBalances + " ללא סכום" : "") + "</span></article>" +
+          "</section>" +
+          '<section class="section"><div class="section-head"><h2>הכנות להיום ולאיחור</h2><button class="btn btn-soft btn-small" type="button" data-page="prep">ללוח ההכנות ←</button></div><div class="list">' +
+            (groups.length ? groups.map(prepCard).join("") : emptyState("✨", "אין הכנות פתוחות להיום")) + "</div></section>" +
+          '<section class="section"><div class="section-head"><h2>מסירות היום</h2><button class="btn btn-soft btn-small" type="button" data-page="orders">לכל ההזמנות ←</button></div><div class="list">' +
+            (deliveries.length ? deliveries.map(function (order) { return orderCard(order, true); }).join("") : emptyState("📦", "אין מסירות מתוכננות להיום")) + "</div></section>" +
+          '<section class="section"><div class="section-head"><h2>תשלומים פתוחים</h2><button class="btn btn-soft btn-small" type="button" data-page="orders" data-filter="unpaid">לרשימה המלאה ←</button></div><div class="list">' +
+            (openOrders.length ? openOrders.slice(0, 4).map(function (order) { return orderCard(order, true); }).join("") : emptyState("✅", "כל ההזמנות שולמו")) + "</div></section>";
+      }
+      function renderOrders() {
+        const labels = { all: "הכל", unpaid: "לא שולם", partial: "שולם חלקית", pickup: "ישולם באיסוף", paid: "שולם" };
+        const orders = data.orders.filter(function (order) {
+          if (archiveView !== order.cancelled) return false;
+          const matchesQuery = !query || (order.customer + " " + order.phone + " " + order.id).toLocaleLowerCase("he").includes(query.toLocaleLowerCase("he"));
+          const status = paymentStatus(order);
+          const matchesFilter = paymentFilter === "all" ||
+            (paymentFilter === "unpaid" && status !== "paid") ||
+            (paymentFilter === "partial" && status === "partial") ||
+            (paymentFilter === "pickup" && status === "pickup") ||
+            (paymentFilter === "paid" && status === "paid");
+          return matchesQuery && matchesFilter;
+        }).sort(function (a, b) { return a.deliveryDate.localeCompare(b.deliveryDate); });
+        app.innerHTML =
+          '<div class="page-heading"><div><h1>' + (archiveView ? "ארכיון הזמנות" : "ההזמנות שלי") + '</h1><div class="subtitle">' + orders.length + (archiveView ? " הזמנות בארכיון" : " הזמנות") + '</div></div><button class="btn btn-primary" type="button" data-action="new-order">＋ הזמנה חדשה</button></div>' +
+          '<div class="tools"><input class="search" id="order-search" type="search" placeholder="חיפוש לפי שם לקוחה או טלפון..." value="' + escapeHtml(query) + '">' +
+            '<button class="btn btn-soft" type="button" data-action="export">ייצוא CSV</button>' +
+            '<button class="btn btn-soft" type="button" data-action="toggle-archive">' + (archiveView ? "להזמנות פעילות" : "ארכיון") + "</button></div>" +
+          (!archiveView ? '<div class="filters">' + Object.keys(labels).map(function (key) { return '<button type="button" class="filter ' + (paymentFilter === key ? "active" : "") + '" data-filter="' + key + '">' + labels[key] + "</button>"; }).join("") + "</div>" : "") +
+          '<section class="section"><div class="list">' + (orders.length ? orders.map(function (order) {
+            return (order.cancelled ? '<article class="card order-card"><div class="order-top"><div><div class="customer">' + escapeHtml(order.customer) + '</div><div class="order-id">הזמנה #' + escapeHtml(order.id) + " · בוטלה</div></div>" + paymentTag(order) + "</div><div class=\"order-items\">" + order.items.map(function (item) { return escapeHtml(item.name) + " × " + item.qty; }).join(" · ") + '</div><button class="btn btn-soft btn-small" type="button" data-action="restore" data-id="' + escapeHtml(order.id) + '">שחזור הזמנה</button></article>' : orderCard(order, false));
+          }).join("") : emptyState("🔎", "לא נמצאו הזמנות מתאימות")) + "</div></section>";
+      }
+      function renderPrep() {
+        const groups = groupPreparations(getPrepEntries()).filter(function (group) {
+          return group.date >= today || group.entries.some(function (entry) { return !entry.completed; });
+        });
+        const byDate = new Map();
+        groups.forEach(function (group) {
+          if (!byDate.has(group.date)) byDate.set(group.date, []);
+          byDate.get(group.date).push(group);
+        });
+        const dates = Array.from(byDate.keys()).sort();
+        app.innerHTML =
+          '<div class="page-heading"><div><h1>לוח הכנות</h1><div class="subtitle">איחוד כמויות אוטומטי לפי פריט ותאריך הכנה</div></div><button class="btn btn-primary" type="button" data-action="new-task">＋ הכנה ידנית</button></div>' +
+          (dates.length ? dates.map(function (date) {
+            const dayGroups = byDate.get(date);
+            return '<section class="date-group"><h2 class="date-title">' + (date < today ? "⚠️ " : date === today ? "🥣 " : "📅 ") +
+              escapeHtml(date === today ? "היום" : formatDate(date, { weekday: "long", day: "numeric", month: "long" })) +
+              (date < today ? ' <span class="tag tag-open">באיחור</span>' : "") + ' <small>' + dayGroups.length + " הכנות</small></h2><div class=\"list\">" +
+              dayGroups.map(prepCard).join("") + "</div></section>";
+          }).join("") : emptyState("🥣", "עדיין אין הכנות בלוח. הזמנות חדשות ייצרו הכנות באופן אוטומטי."));
+      }
+      function renderDetail() {
+        const order = data.orders.find(function (item) { return item.id === selectedOrderId; });
+        if (!order) { page = "orders"; render(); return; }
+        const linked = getPrepEntries().filter(function (entry) { return !entry.manual && entry.order.id === order.id; });
+        const total = totalOf(order), paid = paidOf(order), balance = balanceOf(order);
+        app.innerHTML =
+          '<div class="page-heading"><div><button class="btn btn-soft btn-small" type="button" data-page="orders">→ חזרה להזמנות</button><h1 style="margin-top:12px">הזמנה #' + escapeHtml(order.id) + '</h1><div class="subtitle">' + escapeHtml(order.customer) + "</div></div><div class=\"row-actions\">" +
+            (!order.cancelled ? '<button class="btn btn-soft" type="button" data-action="edit" data-id="' + escapeHtml(order.id) + '">עריכה</button>' : "") +
+          "</div></div>" +
+          (order.cancelled ? '<div class="notice section">ההזמנה בארכיון ולא תופיע בהכנות או בתשלומים הפתוחים.' + (paidOf(order) > 0 ? " התשלום שכבר התקבל דורש בדיקת החזר ידנית." : "") + ' <button class="btn btn-soft btn-small" type="button" data-action="restore" data-id="' + escapeHtml(order.id) + '">שחזור</button></div>' : "") +
+          '<div class="detail-grid section"><section class="card detail-card"><h2>פרטי הלקוחה והמסירה</h2>' +
+            '<div class="detail-line"><span>לקוחה</span><strong>' + escapeHtml(order.customer) + "</strong></div>" +
+            '<div class="detail-line"><span>טלפון</span><strong dir="ltr">' + (order.phone ? '<a href="tel:' + escapeHtml(order.phone) + '">' + escapeHtml(order.phone) + "</a>" : "—") + "</strong></div>" +
+            '<div class="detail-line"><span>תאריך אספקה</span><strong>' + escapeHtml(formatDate(order.deliveryDate)) + "</strong></div>" +
+            '<div class="detail-line"><span>אופן אספקה</span><strong>' + (order.method === "delivery" ? "משלוח" : "איסוף עצמי") + (order.address ? " · " + escapeHtml(order.address) : "") + "</strong></div>" +
+            (order.notes ? '<div class="detail-line"><span>הערות</span><strong>' + escapeHtml(order.notes) + "</strong></div>" : "") + "</section>" +
+            '<section class="card detail-card"><h2>תשלום</h2><div class="detail-line"><span>סטטוס</span>' + paymentTag(order) + "</div>" +
+            '<div class="detail-line"><span>סכום כולל</span><strong>' + (total == null ? "לא הוגדר" : money(total)) + "</strong></div>" +
+            '<div class="detail-line"><span>שולם</span><strong>' + (total == null && paid === 0 ? "לא הוגדר" : money(paid)) + "</strong></div>" +
+            '<div class="detail-line"><span>יתרה</span><strong>' + (balance == null ? "לא ידועה" : money(balance)) + "</strong></div>" +
+            '<div class="row-actions" style="margin-top:12px">' +
+              (paymentStatus(order) !== "paid" ? '<button class="btn btn-green btn-small" type="button" data-action="mark-paid" data-id="' + escapeHtml(order.id) + '">סמני כשולם</button>' : '<button class="btn btn-soft btn-small" type="button" data-action="unmark-paid" data-id="' + escapeHtml(order.id) + '">בטלי סימון תשלום</button>') +
+              (!order.delivered ? '<button class="btn btn-soft btn-small" type="button" data-action="deliver" data-id="' + escapeHtml(order.id) + '">סמני כנמסרה</button>' : "") +
+              (!order.delivered && paymentStatus(order) !== "paid" ? '<button class="btn btn-green btn-small" type="button" data-action="deliver-paid" data-id="' + escapeHtml(order.id) + '">נמסרה ושולמה</button>' : "") + "</div></section></div>" +
+          '<section class="section"><div class="section-head"><h2>פריטים בהזמנה</h2></div><div class="card detail-card">' +
+            order.items.map(function (item) { return '<div class="detail-line"><span>' + escapeHtml(item.name) + ' × ' + Number(item.qty) + '</span><strong>' + money(Number(item.qty) * Number(item.unitPrice || 0)) + "</strong></div>"; }).join("") +
+          "</div></section>" +
+          '<section class="section"><div class="section-head"><h2>הכנות מקושרות</h2></div><div class="list">' +
+            (linked.length ? linked.map(function (entry) {
+              const isDone = entry.completed;
+              return '<article class="card prep-row"><button class="check ' + (isDone ? "done" : "") + '" type="button" data-action="toggle-line" data-id="' + escapeHtml(order.id) + '" data-item-id="' + escapeHtml(entry.item.id) + '" aria-label="שינוי מצב הכנה">' + (isDone ? "✓" : "") + '</button><div class="prep-content"><div class="prep-name">' + escapeHtml(entry.item.name) + '</div><div class="prep-meta">כמות ' + entry.qty + " · הכנה " + escapeHtml(formatDate(entry.date)) + "</div></div></article>";
+            }).join("") : emptyState("✅", "כל ההכנות להזמנה הושלמו")) + "</div></section>" +
+          (!order.cancelled ? '<section class="section"><button class="btn btn-danger" type="button" data-action="cancel-order" data-id="' + escapeHtml(order.id) + '">העברת ההזמנה לארכיון</button></section>' : "");
+      }
+      function renderForm() {
+        const order = editingOrderId ? data.orders.find(function (item) { return item.id === editingOrderId; }) : null;
+        const current = order || { customer: "", phone: "", deliveryDate: addDays(today, 1), method: "pickup", address: "", paymentMode: "pickup", paymentPaid: 0, paymentTotal: "", notes: "", items: [{ name: "", qty: 1, prepDays: 1, unitPrice: 0 }] };
+        const items = current.items.length ? current.items : [{ name: "", qty: 1, prepDays: 1, unitPrice: 0 }];
+        app.innerHTML =
+          '<div class="page-heading"><div><button class="btn btn-soft btn-small" type="button" data-action="back-from-form">→ חזרה</button><h1 style="margin-top:12px">' + (order ? "עריכת הזמנה" : "הזמנה חדשה") + '</h1><div class="subtitle">פרטי ההזמנה והכנות המטבח</div></div></div>' +
+          '<form id="order-form" class="card form-card"><div class="form-grid">' +
+          '<div class="field"><label for="customer">שם הלקוחה *</label><input id="customer" name="customer" required list="customer-names" autocomplete="name" value="' + escapeHtml(current.customer) + '" placeholder="שם מלא"></div>' +
+          '<div class="field"><label for="phone">טלפון</label><input id="phone" name="phone" type="tel" dir="ltr" value="' + escapeHtml(current.phone) + '" placeholder="050-0000000"></div>' +
+          '<div class="span-2"><div class="section-head"><h2>פריטים *</h2><button class="btn btn-soft btn-small" type="button" data-action="add-item">＋ הוספת פריט</button></div><div id="items-container">' +
+          items.map(itemRow).join("") + '</div><div class="total-box"><span>סה״כ לפי מחירי הפריטים</span><span id="items-total">' + money(items.reduce(function (sum, item) { return sum + Number(item.qty || 0) * Number(item.unitPrice || 0); }, 0)) + "</span></div></div>" +
+          '<div class="field"><label for="delivery-date">תאריך אספקה *</label><input id="delivery-date" name="deliveryDate" type="date" required value="' + escapeHtml(current.deliveryDate) + '"></div>' +
+          '<div class="field"><label for="method">אופן אספקה *</label><select id="method" name="method"><option value="pickup" ' + (current.method === "pickup" ? "selected" : "") + '>איסוף עצמי</option><option value="delivery" ' + (current.method === "delivery" ? "selected" : "") + ">משלוח</option></select></div>" +
+          '<div class="field span-2 ' + (current.method === "delivery" ? "" : "hidden") + '" id="address-field"><label for="address">כתובת למשלוח *</label><input id="address" name="address" value="' + escapeHtml(current.address) + '" placeholder="רחוב, מספר ועיר" ' + (current.method === "delivery" ? "required" : "") + "></div>" +
+          '<div class="field"><label for="payment-total">סכום כולל (₪)</label><input id="payment-total" name="paymentTotal" type="number" min="0" step="1" value="' + (current.paymentTotal == null ? "" : escapeHtml(current.paymentTotal)) + '" placeholder="לא חובה"></div>' +
+          '<div class="field"><label for="payment-mode">סטטוס תשלום *</label><select id="payment-mode" name="paymentMode"><option value="pickup" ' + (current.paymentMode === "pickup" ? "selected" : "") + '>ישולם באיסוף</option><option value="partial" ' + (current.paymentMode === "partial" ? "selected" : "") + '>שולם חלקית</option><option value="paid" ' + (current.paymentMode === "paid" ? "selected" : "") + ">שולם</option></select></div>" +
+          '<div class="field ' + (current.paymentMode === "partial" ? "" : "hidden") + '" id="paid-field"><label for="payment-paid">סכום ששולם (₪) *</label><input id="payment-paid" name="paymentPaid" type="number" min="1" step="1" value="' + escapeHtml(current.paymentPaid || "") + '" placeholder="סכום המקדמה" ' + (current.paymentMode === "partial" ? "required" : "") + "></div>" +
+          '<div class="field span-2"><label for="notes">הערות</label><textarea id="notes" name="notes" placeholder="דגשים, רגישויות, ברכה...">' + escapeHtml(current.notes) + "</textarea></div>" +
+          "</div><div class=\"form-actions\"><button class=\"btn btn-primary\" type=\"submit\">שמירת ההזמנה</button><button class=\"btn btn-soft\" type=\"button\" data-action=\"back-from-form\">ביטול</button></div></form>";
+        updateCustomerList();
+        updateItemTotal();
+      }
+      function itemRow(item) {
+        return '<div class="line-item" data-item-id="' + escapeHtml(item.id || "") + '"><div class="field name-field"><label>שם הפריט *</label><input class="item-name" required value="' + escapeHtml(item.name) + '" placeholder="למשל: מארז אלפחורס"></div>' +
+          '<div class="field"><label>כמות *</label><input class="item-qty" type="number" min="1" step="1" required value="' + escapeHtml(item.qty || 1) + '"></div>' +
+          '<div class="field days-field"><label>ימי הכנה</label><input class="item-days" type="number" min="0" step="1" value="' + escapeHtml(item.prepDays == null ? 1 : item.prepDays) + '"></div>' +
+          '<div class="field price-field"><label>מחיר ליח׳</label><input class="item-price" type="number" min="0" step="1" value="' + escapeHtml(item.unitPrice || 0) + '"></div>' +
+          '<div class="remove-field"><button class="icon-btn" type="button" data-action="remove-item" aria-label="הסרת פריט">×</button></div></div>';
+      }
+      function updateItemTotal() {
+        const total = Array.from(document.querySelectorAll(".line-item")).reduce(function (sum, row) {
+          return sum + Math.max(0, Number(row.querySelector(".item-qty").value || 0)) * Math.max(0, Number(row.querySelector(".item-price").value || 0));
+        }, 0);
+        const target = document.getElementById("items-total");
+        if (target) target.textContent = money(total);
+      }
+      function updateCustomerList() {
+        const names = Array.from(new Set(data.orders.map(function (order) { return order.customer; }).filter(Boolean)));
+        document.getElementById("customer-names").innerHTML = names.map(function (name) { return '<option value="' + escapeHtml(name) + '"></option>'; }).join("");
+      }
+      function openNewOrder() {
+        editingOrderId = null;
+        selectedOrderId = null;
+        page = "form";
+        render();
+      }
+      function openDetails(orderId) {
+        selectedOrderId = orderId;
+        page = "detail";
+        render();
+      }
+      function markPaid(orderId) {
+        const order = data.orders.find(function (item) { return item.id === orderId; });
+        if (!order) return;
+        order.paymentMode = "paid";
+        order.paymentPaid = totalOf(order);
+        if (!saveData()) return;
+        render(); notify("התשלום סומן כשולם");
+      }
+      function togglePaid(orderId) {
+        const order = data.orders.find(function (item) { return item.id === orderId; });
+        if (!order) return;
+        order.paymentMode = "pickup";
+        order.paymentPaid = 0;
+        if (!saveData()) return;
+        render(); notify("סימון התשלום בוטל");
+      }
+      function togglePrep(key) {
+        const group = groupPreparations(getPrepEntries()).find(function (item) { return item.key === key; });
+        if (!group) return;
+        const completed = group.entries.every(function (entry) { return entry.completed; });
+        group.entries.forEach(function (entry) {
+          if (entry.manual) entry.task.done = !completed;
+          else entry.item.preparedQty = completed ? 0 : Number(entry.item.qty || 0);
+        });
+        if (!saveData()) return;
+        render();
+      }
+      function toggleLine(orderId, itemId) {
+        const order = data.orders.find(function (item) { return item.id === orderId; });
+        const item = order && order.items.find(function (line) { return line.id === itemId; });
+        if (!item) return;
+        item.preparedQty = Number(item.preparedQty || 0) >= Number(item.qty || 0) ? 0 : Number(item.qty || 0);
+        if (!saveData()) return;
+        render();
+      }
+      function submitOrder(form) {
+        const values = new FormData(form);
+        const rows = Array.from(document.querySelectorAll(".line-item"));
+        const old = editingOrderId ? data.orders.find(function (item) { return item.id === editingOrderId; }) : null;
+        const items = rows.map(function (row) {
+          const previous = old && old.items.find(function (item) { return item.id === row.dataset.itemId; });
+          const itemName = row.querySelector(".item-name").value.trim();
+          return {
+            id: previous ? previous.id : (row.dataset.itemId || id()), name: itemName,
+            qty: Number(row.querySelector(".item-qty").value),
+            prepDays: Number(row.querySelector(".item-days").value || 0),
+            unitPrice: Number(row.querySelector(".item-price").value || 0),
+            prepDate: previous && Number(previous.preparedQty || 0) > 0 ? previous.prepDate : addDays(values.get("deliveryDate"), -Number(row.querySelector(".item-days").value || 0)),
+            preparedQty: previous ? Math.min(Number(previous.preparedQty || 0), Number(row.querySelector(".item-qty").value)) : 0
+          };
+        }).filter(function (item) { return item.name; });
+        if (!items.length) { notify("יש להוסיף לפחות פריט אחד"); return; }
+        const mode = values.get("paymentMode");
+        const paymentTotalValue = values.get("paymentTotal");
+        const calculatedTotal = items.reduce(function (sum, item) { return sum + item.qty * item.unitPrice; }, 0);
+        const paymentTotal = paymentTotalValue === "" ? (calculatedTotal || null) : Number(paymentTotalValue);
+        const paymentPaid = mode === "paid" ? (paymentTotal == null ? 0 : paymentTotal) : mode === "partial" ? Number(values.get("paymentPaid")) : 0;
+        if (mode === "partial" && !(paymentPaid > 0)) { notify("בהזמנה עם תשלום חלקי יש להזין סכום ששולם"); return; }
+        if (paymentTotal != null && paymentPaid > paymentTotal) { notify("הסכום ששולם לא יכול לעלות על הסכום הכולל"); return; }
+        if (values.get("method") === "delivery" && !String(values.get("address") || "").trim()) { notify("חסרה כתובת למשלוח"); return; }
+        const updated = {
+          id: old ? old.id : String(data.nextId++), customer: String(values.get("customer")).trim(),
+          phone: String(values.get("phone") || "").trim(), items: items,
+          deliveryDate: values.get("deliveryDate"), method: values.get("method"),
+          address: String(values.get("address") || "").trim(), paymentTotal: paymentTotal,
+          paymentPaid: paymentPaid, paymentMode: mode, notes: String(values.get("notes") || "").trim(),
+          delivered: old ? old.delivered : false, cancelled: false
+        };
+        if (!updated.customer || !updated.deliveryDate) { notify("חסרים שם לקוחה או תאריך אספקה"); return; }
+        if (old) data.orders[data.orders.indexOf(old)] = updated;
+        else data.orders.push(updated);
+        if (!saveData()) return;
+        page = "home"; editingOrderId = null; render(); notify(old ? "ההזמנה עודכנה" : "ההזמנה נשמרה בהצלחה");
+      }
+      function cancelOrder(orderId) {
+        const order = data.orders.find(function (item) { return item.id === orderId; });
+        if (!order) return;
+        order.cancelled = true;
+        if (!saveData()) return;
+        page = "orders"; archiveView = true; render();
+        notify("ההזמנה הועברה לארכיון");
+      }
+      function exportCsv() {
+        const headers = ["סוג רשומה", "מספר הזמנה", "לקוחה", "טלפון", "תאריך אספקה", "אופן אספקה", "סטטוס תשלום", "סכום כולל", "שולם", "יתרה", "פריט", "כמות", "תאריך הכנה", "בוצע", "הערות", "בוטלה"];
+        const rows = [headers];
+        data.orders.forEach(function (order) {
+          order.items.forEach(function (item) {
+            rows.push(["הזמנה", order.id, order.customer, order.phone, order.deliveryDate, order.method === "delivery" ? "משלוח" : "איסוף עצמי",
+              paymentLabel(order), totalOf(order) == null ? "" : totalOf(order), paidOf(order), balanceOf(order) == null ? "" : balanceOf(order),
+              item.name, item.qty, item.prepDate || addDays(order.deliveryDate, -item.prepDays), Number(item.preparedQty || 0) >= Number(item.qty || 0) ? "כן" : "לא", order.notes, order.cancelled ? "כן" : "לא"]);
+          });
+        });
+        data.manualTasks.forEach(function (task) {
+          rows.push(["הכנה ידנית", "", "", "", "", "", "", "", "", "", task.name, task.qty, task.date, task.done ? "כן" : "לא", "", ""]);
+        });
+        const csv = "\uFEFF" + rows.map(function (row) {
+          return row.map(function (value) { return '"' + String(value == null ? "" : value).replace(/"/g, '""') + '"'; }).join(",");
+        }).join("\r\n");
+        const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "hamitbach-backup-" + today + ".csv";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        notify("קובץ הגיבוי הורד");
+      }
+      function handleClick(event) {
+        const button = event.target.closest("button");
+        if (!button) return;
+        if (button.dataset.page) {
+          page = button.dataset.page;
+          if (page === "orders") archiveView = false;
+          query = "";
+          if (button.dataset.filter) paymentFilter = button.dataset.filter;
+          render(); return;
+        }
+        const action = button.dataset.action;
+        if (!action) return;
+        if (action === "new-order") openNewOrder();
+        else if (action === "details") openDetails(button.dataset.id);
+        else if (action === "edit") { editingOrderId = button.dataset.id; page = "form"; render(); }
+        else if (action === "mark-paid") markPaid(button.dataset.id);
+        else if (action === "deliver-paid") {
+          const order = data.orders.find(function (item) { return item.id === button.dataset.id; });
+          if (order) {
+            order.delivered = true;
+            order.paymentMode = "paid";
+            order.paymentPaid = totalOf(order);
+            if (!saveData()) return;
+            render(); notify("ההזמנה נמסרה וסומנה כשולמה");
+          }
+        }
+        else if (action === "unmark-paid") togglePaid(button.dataset.id);
+        else if (action === "toggle-prep") togglePrep(button.dataset.key);
+        else if (action === "toggle-line") toggleLine(button.dataset.id, button.dataset.itemId);
+        else if (action === "filter") { paymentFilter = button.dataset.filter; render(); }
+        else if (action === "toggle-archive") { archiveView = !archiveView; paymentFilter = "all"; query = ""; render(); }
+        else if (action === "export") exportCsv();
+        else if (action === "cancel-order") cancelOrder(button.dataset.id);
+        else if (action === "restore") {
+          const order = data.orders.find(function (item) { return item.id === button.dataset.id; });
+          if (order) {
+            order.cancelled = false;
+            if (!saveData()) return;
+            archiveView = false; render(); notify("ההזמנה שוחזרה");
+          }
+        } else if (action === "deliver") {
+          const order = data.orders.find(function (item) { return item.id === button.dataset.id; });
+          if (order) {
+            order.delivered = true;
+            if (!saveData()) return;
+            render(); notify("ההזמנה סומנה כנמסרה");
+          }
+        } else if (action === "back-from-form") {
+          page = selectedOrderId ? "detail" : "home"; editingOrderId = null; render();
+        } else if (action === "add-item") {
+          document.getElementById("items-container").insertAdjacentHTML("beforeend", itemRow({ name: "", qty: 1, prepDays: 1, unitPrice: 0 }));
+          updateItemTotal();
+        } else if (action === "remove-item") {
+          const rows = document.querySelectorAll(".line-item");
+          if (rows.length === 1) { notify("הזמנה חייבת לכלול לפחות פריט אחד"); return; }
+          button.closest(".line-item").remove(); updateItemTotal();
+        } else if (action === "new-task") {
+          const name = window.prompt("מה צריך להכין?");
+          if (name === null) return;
+          const taskName = name.trim();
+          if (!taskName) { notify("יש להזין שם להכנה"); return; }
+          const date = window.prompt("תאריך הכנה (YYYY-MM-DD)", today);
+          if (date === null) return;
+          if (!isValidISODate(date)) { notify("תאריך ההכנה אינו תקין"); return; }
+          const quantityInput = window.prompt("כמות להכנה", "1");
+          if (quantityInput === null) return;
+          const quantity = Number(quantityInput);
+          if (!Number.isInteger(quantity) || quantity < 1) { notify("הכמות חייבת להיות מספר שלם וחיובי"); return; }
+          data.manualTasks.push({ id: id(), name: taskName, qty: quantity, date: date, done: false });
+          if (!saveData()) return;
+          render(); notify("ההכנה נוספה ללוח");
+        } else if (action === "change-prep-date") {
+          const group = groupPreparations(getPrepEntries()).find(function (item) { return item.key === button.dataset.key; });
+          if (!group) return;
+          const date = window.prompt("תאריך הכנה חדש (YYYY-MM-DD)", group.date);
+          if (date === null) return;
+          if (!isValidISODate(date)) { notify("תאריך ההכנה אינו תקין"); return; }
+          group.entries.forEach(function (entry) {
+            if (entry.manual) entry.task.date = date;
+            else entry.item.prepDate = date;
+          });
+          if (!saveData()) return;
+          render(); notify("תאריך ההכנה עודכן");
+        }
+      }
+      document.addEventListener("click", handleClick);
+      document.addEventListener("input", function (event) {
+        if (event.target.id === "order-search") {
+          const start = event.target.selectionStart;
+          query = event.target.value;
+          renderOrders();
+          const input = document.getElementById("order-search");
+          input.focus(); input.setSelectionRange(start, start);
+        } else if (event.target.closest("#order-form") && event.target.matches(".item-qty, .item-price")) updateItemTotal();
+      });
+      document.addEventListener("change", function (event) {
+        if (event.target.id === "method") {
+          const delivery = event.target.value === "delivery";
+          document.getElementById("address-field").classList.toggle("hidden", !delivery);
+          document.getElementById("address").required = delivery;
+        } else if (event.target.id === "payment-mode") {
+          const partial = event.target.value === "partial";
+          document.getElementById("paid-field").classList.toggle("hidden", !partial);
+          document.getElementById("payment-paid").required = partial;
+        }
+      });
+      document.addEventListener("submit", function (event) {
+        if (event.target.id === "order-form") {
+          event.preventDefault();
+          if (!event.target.reportValidity()) return;
+          submitOrder(event.target);
+        }
+      });
+      render();
+    })();
+  </script>
+</body>
+</html>

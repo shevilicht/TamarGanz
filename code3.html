@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="he"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&amp;family=Heebo:wght@400;500;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { width: 100vw; margin: 0; padding: 0; } body { overscroll-behavior: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary-fixed": "#2b1706", "on-background": "#1c1c19", "tertiary": "#174629", "tertiary-container": "#305e3f", "primary-fixed-dim": "#e5bfa5", "on-tertiary-container": "#a3d6ae", "on-error": "#ffffff", "surface-container": "#f0ede9", "tertiary-fixed": "#bbefc6", "secondary-fixed-dim": "#dac1ba", "surface-tint": "#755843", "on-primary": "#ffffff", "tertiary-fixed-dim": "#a0d2ab", "primary-fixed": "#ffdcc4", "error-container": "#ffdad6", "primary-container": "#6b4f3a", "outline-variant": "#d3c4ba", "background": "#fcf9f4", "surface-bright": "#fcf9f4", "on-primary-container": "#e9c2a8", "on-tertiary": "#ffffff", "on-error-container": "#93000a", "surface": "#fcf9f4", "inverse-primary": "#e5bfa5", "inverse-surface": "#31302d", "on-secondary": "#ffffff", "surface-container-low": "#f6f3ee", "on-surface-variant": "#4f453e", "secondary": "#6d5a55", "surface-container-high": "#ebe8e3", "on-secondary-fixed-variant": "#54433e", "inverse-on-surface": "#f3f0eb", "secondary-fixed": "#f7ddd6", "on-primary-fixed-variant": "#5c412d", "primary": "#513825", "on-tertiary-fixed-variant": "#215031", "on-secondary-container": "#73605b", "secondary-container": "#f7ddd6", "on-surface": "#1c1c19", "on-tertiary-fixed": "#00210e", "surface-container-highest": "#e5e2dd", "on-secondary-fixed": "#261814", "surface-variant": "#e5e2dd", "error": "#ba1a1a", "surface-container-lowest": "#ffffff", "outline": "#81756d", "surface-dim": "#dcdad5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter": "1rem", "space-sm": "0.5rem", "gutter-md": "1.5rem", "space-xs": "0.25rem", "margin-lg": "2.5rem", "margin-md": "1.5rem", "space-md": "1rem", "margin": "1rem", "gutter-lg": "2rem", "space-xl": "2rem", "space-lg": "1.5rem" }, fontFamily: { "headline-lg": ["Assistant"], "label-sm": ["Heebo"], "display-lg": ["Assistant"], "display-lg-mobile": ["Assistant"], "body-lg": ["Heebo"], "label-md": ["Heebo"], "label-lg": ["Heebo"], "headline-sm": ["Assistant"], "body-sm": ["Heebo"], "body-md": ["Heebo"], "numeric-metric": ["Assistant"], "headline-md": ["Assistant"] }, fontSize: { "headline-lg": ["28px", { lineHeight: "36px", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "500" }], "display-lg": ["40px", { lineHeight: "48px", fontWeight: "600" }], "display-lg-mobile": ["30px", { lineHeight: "38px", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "label-md": ["12px", { lineHeight: "16px", fontWeight: "500" }], "label-lg": ["14px", { lineHeight: "20px", fontWeight: "500" }], "headline-sm": ["18px", { lineHeight: "26px", fontWeight: "600" }], "body-sm": ["12px", { lineHeight: "18px", fontWeight: "400" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "numeric-metric": ["32px", { lineHeight: "38px", fontWeight: "700" }], "headline-md": ["22px", { lineHeight: "30px", fontWeight: "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(41,38,33,0.05)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center bg-secondary-container"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkjxYD8U7wqB0t4T-BX3LPBnM5IgkStkZn-qFAJX5hnEA9AicO2RJjHclNzi9MdHf38Ic_ZdAsI6LB9EsiHZ0sXl1f3R6JyI46d4TUji7kR2nBfi_vOA_jEoDnmdHoE_bYMEaLTHFA6EvgzEyz-CqKukR2a1iCFRS9u4uzxIn0Ld8zv7zRN4FvBJwJ-GSM7I09TdHCrhC5ruYRdTrCxbLu7Smg9ryLeEZijZOYy5k"/></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-tight">המטבח של תמר</span><span class="font-label-sm text-label-sm text-on-surface-variant">Orders</span></div></div><div class="flex items-center gap-space-sm"><a class="w-11 h-11 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:bg-surface-container-highest transition-colors" data-path="new-order" href="#"><span class="material-symbols-outlined text-[22px]">search</span></a></div></div></header><main class="flex-1 flex flex-col relative w-full px-gutter pt-16 pb-24 bg-surface"><div class="flex flex-col w-full gap-space-lg">
+<!-- Top Banner & Quick Controls -->
+<section class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<h1 class="font-headline-md text-headline-md text-on-surface">ההזמנות שלי</h1>
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span>
+<span class="font-label-md text-label-md">14 הזמנות פעילות</span>
+</div>
+</div>
+<a class="flex items-center gap-space-xs bg-primary text-on-primary h-12 px-space-md rounded-xl shadow-sm hover:bg-primary-container active:scale-95 transition-all" data-path="new-order" href="#">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="font-label-lg text-label-lg">הזמנה חדשה +</span>
+</a>
+</div>
+<!-- Search input -->
+<div class="relative w-full">
+<div class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full h-12 pr-10 pl-10 rounded-xl bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-outline shadow-sm focus:outline-none focus:bg-surface-container-low transition-all" id="orderSearchInput" placeholder="חיפוש לפי שם לקוחה או מספר הזמנה..." type="text"/>
+<button class="absolute inset-y-0 left-3 flex items-center text-outline hover:text-on-surface hidden" id="clearSearchBtn">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</section>
+<!-- Filter tabs (Horizontal scrollable pills) -->
+<section class="w-full -mx-gutter px-gutter overflow-x-auto scrollbar-none py-1">
+<div class="flex items-center gap-space-xs min-w-max">
+<button class="filter-tab active flex items-center gap-1.5 h-9 px-4 rounded-full font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-all" data-status="all">
+<span>כל ההזמנות</span>
+<span class="px-1.5 py-0.5 rounded-full text-label-sm font-label-sm bg-on-primary/20 text-on-primary">14</span>
+</button>
+<button class="filter-tab flex items-center gap-1.5 h-9 px-4 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all" data-status="unpaid">
+<span>לא שולם</span>
+<span class="px-1.5 py-0.5 rounded-full text-label-sm font-label-sm bg-error-container text-on-error-container">3</span>
+</button>
+<button class="filter-tab flex items-center gap-1.5 h-9 px-4 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all" data-status="partial">
+<span>שולם חלקית</span>
+<span class="px-1.5 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary-fixed text-on-secondary-fixed-variant">2</span>
+</button>
+<button class="filter-tab flex items-center gap-1.5 h-9 px-4 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all" data-status="pickup">
+<span>ישולם באיסוף</span>
+<span class="px-1.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-highest text-on-surface">4</span>
+</button>
+<button class="filter-tab flex items-center gap-1.5 h-9 px-4 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all" data-status="paid">
+<span>שולם במלואו</span>
+<span class="px-1.5 py-0.5 rounded-full text-label-sm font-label-sm bg-tertiary-fixed text-on-tertiary-fixed-variant">5</span>
+</button>
+</div>
+</section>
+<!-- Orders Timeline / List -->
+<section class="flex flex-col gap-space-md" id="ordersContainer">
+<!-- Day Header: היום -->
+<div class="flex items-center gap-space-sm pt-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">calendar_today</span>
+<span class="font-headline-sm text-headline-sm text-primary">היום • 18 במרץ</span>
+<span class="h-[1px] flex-1 bg-surface-container-highest"></span>
+</div>
+<!-- Card 1: רוני לוי -->
+<article class="order-card relative flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-md gap-space-sm transition-all overflow-hidden" data-client="רוני לוי" data-id="1042" data-status="paid">
+<div class="absolute top-0 right-0 bottom-0 w-1.5 bg-tertiary"></div>
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed font-headline-sm text-headline-sm">
+            ר
+          </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">רוני לוי</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">הזמנה #1042</span>
+</div>
+</div>
+<!-- Paid Badge -->
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full font-label-sm text-label-sm bg-tertiary-fixed text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>שולם במלואו</span>
+</span>
+</div>
+<div class="flex flex-col gap-1 p-space-sm rounded-lg bg-surface-container-low text-on-surface">
+<span class="font-body-md text-body-md font-medium text-on-surface">12 מארזי מקרונים, 24 אלפחורס שקדים</span>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule</span>
+<span>היום, 18 במרץ • 14:00 (איסוף עצמי)</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">סכום כולל</span>
+<span class="font-headline-sm text-headline-sm text-primary">₪280</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<a class="h-12 w-12 rounded-xl flex items-center justify-center bg-tertiary-fixed text-on-tertiary-fixed-variant hover:opacity-90 active:scale-95 transition-all" href="https://wa.me/?text=שלום%20רוני,%20ההזמנה%20שלך%20מוכנה%20במטבח%20של%20תמר!" target="_blank" title="וואטסאפ ללקוחה">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</a>
+<button class="h-12 px-space-md rounded-xl font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all">
+            פרטי הזמנה
+          </button>
+</div>
+</div>
+</article>
+<!-- Card 2: שירה אלון -->
+<article class="order-card relative flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-md gap-space-sm transition-all overflow-hidden" data-client="שירה אלון" data-id="1044" data-status="pickup">
+<div class="absolute top-0 right-0 bottom-0 w-1.5 bg-secondary"></div>
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-headline-sm text-headline-sm">
+            ש
+          </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">שירה אלון</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">הזמנה #1044</span>
+</div>
+</div>
+<!-- Pay at pickup badge -->
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-[14px]">storefront</span>
+<span>ישולם באיסוף (יתרה ₪320)</span>
+</span>
+</div>
+<div class="flex flex-col gap-1 p-space-sm rounded-lg bg-surface-container-low text-on-surface">
+<span class="font-body-md text-body-md font-medium text-on-surface">עוגת שכבות מוס שוקולד גנאש יום הולדת 30</span>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">local_shipping</span>
+<span>היום, 18 במרץ • 16:30 (משלוח)</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">סכום לתשלום</span>
+<span class="font-headline-sm text-headline-sm text-primary">₪320</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="mark-paid-btn h-12 px-space-md rounded-xl font-label-md text-label-md bg-primary-container text-on-primary shadow-sm hover:opacity-95 active:scale-95 transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">done</span>
+<span>סימון שולם</span>
+</button>
+<button class="h-12 px-space-md rounded-xl font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all">
+            פרטים
+          </button>
+</div>
+</div>
+</article>
+<!-- Day Header: מחר -->
+<div class="flex items-center gap-space-sm pt-space-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">event</span>
+<span class="font-headline-sm text-headline-sm text-primary">מחר • 19 במרץ</span>
+<span class="h-[1px] flex-1 bg-surface-container-highest"></span>
+</div>
+<!-- Card 3: מאיה כהן -->
+<article class="order-card relative flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-md gap-space-sm transition-all overflow-hidden" data-client="מאיה כהן" data-id="1043" data-status="partial">
+<div class="absolute top-0 right-0 bottom-0 w-1.5 bg-primary-container"></div>
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed-dim flex items-center justify-center text-on-secondary-fixed font-headline-sm text-headline-sm">
+            מ
+          </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">מאיה כהן</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">הזמנה #1043</span>
+</div>
+</div>
+<!-- Partial Payment Badge -->
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-[14px]">timelapse</span>
+<span>שולם חלקית (נותר ₪120)</span>
+</span>
+</div>
+<div class="flex flex-col gap-1 p-space-sm rounded-lg bg-surface-container-low text-on-surface">
+<span class="font-body-md text-body-md font-medium text-on-surface">מארז 6 קינוחי כוסות קרם ברולה, טארטלט פירות</span>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule</span>
+<span>מחר, 19 במרץ • 10:00 (איסוף עצמי)</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">שולם ₪100 מתוך</span>
+<span class="font-headline-sm text-headline-sm text-primary">₪220</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="h-12 px-space-md rounded-xl font-label-md text-label-md bg-secondary text-on-secondary active:scale-95 transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+<span>עדכון תשלום</span>
+</button>
+<button class="h-12 px-space-md rounded-xl font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all">
+            פרטים
+          </button>
+</div>
+</div>
+</article>
+<!-- Day Header: בהמשך השבוע -->
+<div class="flex items-center gap-space-sm pt-space-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">date_range</span>
+<span class="font-headline-sm text-headline-sm text-primary">בהמשך השבוע</span>
+<span class="h-[1px] flex-1 bg-surface-container-highest"></span>
+</div>
+<!-- Card 4: נועה ברקוביץ' -->
+<article class="order-card relative flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-md gap-space-sm transition-all overflow-hidden" data-client="נועה ברקוביץ'" data-id="1046" data-status="unpaid">
+<div class="absolute top-0 right-0 bottom-0 w-1.5 bg-error"></div>
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-on-error-container font-headline-sm text-headline-sm">
+            נ
+          </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">נועה ברקוביץ'</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">הזמנה #1046</span>
+</div>
+</div>
+<!-- Unpaid Badge -->
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full font-label-sm text-label-sm bg-error-container text-on-error-container">
+<span class="material-symbols-outlined text-[14px]">error_outline</span>
+<span>לא שולם</span>
+</span>
+</div>
+<div class="flex flex-col gap-1 p-space-sm rounded-lg bg-surface-container-low text-on-surface">
+<span class="font-body-md text-body-md font-medium text-on-surface">עוגת שמרים שוקולד ואגוזים, 2 פסי קראנץ' חלבה</span>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule</span>
+<span>יום ה', 20 במרץ • 12:00 (איסוף)</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">סכום לתשלום</span>
+<span class="font-headline-sm text-headline-sm text-error">₪180</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="mark-paid-btn h-12 px-space-md rounded-xl font-label-md text-label-md bg-primary text-on-primary active:scale-95 transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span>סימון שולם</span>
+</button>
+<button class="h-12 px-space-md rounded-xl font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all">
+            פרטים
+          </button>
+</div>
+</div>
+</article>
+<!-- Card 5: מיכל אברהמי -->
+<article class="order-card relative flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-md gap-space-sm transition-all overflow-hidden" data-client="מיכל אברהמי" data-id="1047" data-status="paid">
+<div class="absolute top-0 right-0 bottom-0 w-1.5 bg-tertiary"></div>
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed font-headline-sm text-headline-sm">
+            מ
+          </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">מיכל אברהמי</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">הזמנה #1047</span>
+</div>
+</div>
+<!-- Fully Paid Badge -->
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full font-label-sm text-label-sm bg-tertiary-fixed text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span>שולם במלואו</span>
+</span>
+</div>
+<div class="flex flex-col gap-1 p-space-sm rounded-lg bg-surface-container-low text-on-surface">
+<span class="font-body-md text-body-md font-medium text-on-surface">שולחן קינוחי ביס (40 יח' מיקס טארטלטים ופחזניות)</span>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">local_shipping</span>
+<span>יום ו', 21 במרץ • 09:30 (משלוח לאירוע)</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">סכום כולל</span>
+<span class="font-headline-sm text-headline-sm text-primary">₪850</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<a class="h-12 w-12 rounded-xl flex items-center justify-center bg-tertiary-fixed text-on-tertiary-fixed-variant hover:opacity-90 active:scale-95 transition-all" href="https://wa.me/?text=שלום%20מיכל,%20רצינו%20לוודא%20פרטי%20משלוח%20הקינוחים%20ליום%20שישי!" target="_blank" title="וואטסאפ ללקוחה">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</a>
+<button class="h-12 px-space-md rounded-xl font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all">
+            פרטי הזמנה
+          </button>
+</div>
+</div>
+</article>
+<!-- Empty search/filter result state -->
+<div class="hidden flex-col items-center justify-center py-12 px-space-md text-center bg-surface-container-lowest rounded-xl shadow-sm gap-space-sm" id="noResultsState">
+<div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">bakery_dining</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-headline-sm text-headline-sm text-on-surface">לא נמצאו הזמנות תואמות</span>
+<span class="font-body-md text-body-md text-on-surface-variant">נסי לחפש לפי שם לקוחה אחר או לשנות את לשונית הסינון</span>
+</div>
+</div>
+</section>
+<!-- Interactive script for fast search and filter tabs -->
+<script>
+    (function() {
+      const tabs = document.querySelectorAll('.filter-tab');
+      const cards = document.querySelectorAll('.order-card');
+      const searchInput = document.getElementById('orderSearchInput');
+      const clearBtn = document.getElementById('clearSearchBtn');
+      const noResults = document.getElementById('noResultsState');
+
+      let currentFilter = 'all';
+
+      function applyFilter() {
+        const query = searchInput.value.trim().toLowerCase();
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const cardStatus = card.getAttribute('data-status');
+          const client = (card.getAttribute('data-client') || '').toLowerCase();
+          const id = (card.getAttribute('data-id') || '').toLowerCase();
+
+          const matchesFilter = (currentFilter === 'all') || (cardStatus === currentFilter);
+          const matchesQuery = !query || client.includes(query) || id.includes(query);
+
+          if (matchesFilter && matchesQuery) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (visibleCount === 0) {
+          noResults.classList.remove('hidden');
+          noResults.classList.add('flex');
+        } else {
+          noResults.classList.add('hidden');
+          noResults.classList.remove('flex');
+        }
+
+        clearBtn.classList.toggle('hidden', query.length === 0);
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.classList.remove('active', 'bg-primary', 'text-on-primary');
+            t.classList.add('bg-surface-container', 'text-on-surface-variant');
+          });
+          tab.classList.add('active', 'bg-primary', 'text-on-primary');
+          tab.classList.remove('bg-surface-container', 'text-on-surface-variant');
+
+          currentFilter = tab.getAttribute('data-status');
+          applyFilter();
+        });
+      });
+
+      searchInput.addEventListener('input', applyFilter);
+
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        applyFilter();
+        searchInput.focus();
+      });
+
+      // Quick action for mark paid
+      document.querySelectorAll('.mark-paid-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const card = this.closest('.order-card');
+          card.setAttribute('data-status', 'paid');
+          this.innerHTML = '<span class="material-symbols-outlined text-[18px]">done_all</span><span>שולם ✓</span>';
+          this.classList.remove('bg-primary-container', 'bg-primary');
+          this.classList.add('bg-tertiary-fixed', 'text-on-tertiary-fixed-variant');
+          applyFilter();
+        });
+      });
+    })();
+  </script>
+</div></main><div class="fixed bottom-20 left-gutter z-50"><a class="flex items-center gap-space-xs bg-primary text-on-primary shadow-[0_8px_24px_-4px_rgba(107,79,58,0.35)] px-gutter-md h-12 rounded-full font-label-lg text-label-lg transition-transform active:scale-95" data-path="new-order" href="#"><span class="material-symbols-outlined text-[20px]">add</span><span>הזמנה חדשה</span></a></div><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(41,38,33,0.06)]" data-active-classes="text-primary font-bold"><div class="flex justify-around items-center h-16 px-space-sm"><a class="flex flex-col items-center justify-center gap-space-xs flex-1 h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[24px]">dashboard</span><span class="font-label-sm text-label-sm">היום שלי</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-space-xs flex-1 h-12 transition-colors text-primary font-bold" data-path="orders" href="#"><span class="material-symbols-outlined text-[24px]">receipt_long</span><span class="font-label-sm text-label-sm">הזמנות</span></a><a class="flex flex-col items-center justify-center gap-space-xs flex-1 h-12 text-on-surface-variant hover:text-on-surface transition-colors" data-path="prep-schedule" href="#"><span class="material-symbols-outlined text-[24px]">bakery_dining</span><span class="font-label-sm text-label-sm">לוח הכנות</span></a></div></nav></body></html>
